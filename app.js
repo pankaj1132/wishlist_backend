@@ -11,7 +11,13 @@ const app = express();
 const connectDB = require('./config/db');
 connectDB();
 
-app.use(cors()); // Enable CORS
+app.use(cors(
+    {
+        origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    }
+)); // Enable CORS
 app.use(express.json());
 
 app.get('/', (req, res) => {
