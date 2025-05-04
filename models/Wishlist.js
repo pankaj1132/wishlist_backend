@@ -12,7 +12,7 @@ const wishlistSchema = new mongoose.Schema(
                 name: { type: String, required: true },
                 description: { type: String },
                 price: { type: Number, required: true },
-                image: { type: String }, // New field for product image (URL)
+                image: { type: String }, 
             },
         ],
         createdBy: {

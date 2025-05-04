@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const cors = require('cors'); // Import cors
+const cors = require('cors'); 
 
 const userRoutes = require('./routes/user');
 const wishlistRoutes = require('./routes/wishlist');
@@ -13,11 +13,11 @@ connectDB();
 
 app.use(cors(
     {
-        origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+        origin: process.env.FRONTEND_URL, 
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+        credentials: true, 
     }
-)); // Enable CORS
+)); 
 app.use(express.json());
 
 app.get('/', (req, res) => {

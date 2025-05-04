@@ -1,13 +1,13 @@
 const Wishlist = require('../models/Wishlist');
 
-// Create a new wishlist
+
 exports.createWishlist = async (req, res) => {
     const { name, products } = req.body;
 
     try {
         const wishlist = await Wishlist.create({
             name,
-            products, // Products array now includes the image field
+            products, 
             createdBy: req.user.id,
         });
         res.status(201).json(wishlist);
@@ -16,7 +16,6 @@ exports.createWishlist = async (req, res) => {
     }
 };
 
-// Get all wishlists
 exports.getWishlists = async (req, res) => {
     try {
         const wishlists = await Wishlist.find({ createdBy: req.user.id });
@@ -26,7 +25,6 @@ exports.getWishlists = async (req, res) => {
     }
 };
 
-// Update a wishlist
 exports.updateWishlist = async (req, res) => {
     const { id } = req.params;
     const { name, products } = req.body;
@@ -41,9 +39,9 @@ exports.updateWishlist = async (req, res) => {
             return res.status(403).json({ message: 'Not authorized' });
         }
 
-        // Update wishlist fields
+        
         wishlist.name = name || wishlist.name;
-        wishlist.products = products || wishlist.products; // Products array includes the image field
+        wishlist.products = products || wishlist.products; 
         wishlist.updatedBy = req.user.id;
 
         const updatedWishlist = await wishlist.save();
@@ -53,7 +51,6 @@ exports.updateWishlist = async (req, res) => {
     }
 };
 
-// Delete a wishlist
 exports.deleteWishlist = async (req, res) => {
     const { id } = req.params;
 
